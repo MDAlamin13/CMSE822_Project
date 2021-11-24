@@ -10,8 +10,8 @@ import copy
 import math
 #random.seed(1)
 
-population_size=30
-generation=2000
+population_size=10
+generation=2
 shape=500
 
 k=math.ceil(population_size*0.2)

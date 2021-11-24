@@ -5,18 +5,18 @@ import numpy as np
 import random
 from ete3 import Tree 
 
-tree=ph.read("score_tree.txt","newick")
-seqfile=al.read(open("score_seq.fasta"), "fasta")
+#tree=ph.read("score_tree.txt","newick")
+#seqfile=al.read(open("score_seq.fasta"), "fasta")
 kappa=1
 
 
-root=tree.root
+#root=tree.root
 shape=500
 branch_mut_prob=.05
 ### tree in Phylo format ###
 def branch_length_mutation(tree):
     proportion=random.random()
-   
+    root=tree.root  ##new_addition
     for clade in tree.find_clades(order='postorder'):
         if(clade!=root):
             old_blen=float(clade.branch_length) 

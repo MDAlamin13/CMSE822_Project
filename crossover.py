@@ -1,4 +1,3 @@
-import fitness
 from Bio import Phylo as ph
 from Bio import AlignIO as al
 import numpy as np
