@@ -5,7 +5,8 @@ import random
 from ete3 import Tree 
 import copy
 #random.seed(1)
-def crossover(offspring,parent,num_taxa):
+def crossover(offspring,parent,num_taxa,seed):
+    random.seed(seed)
     t=Tree()
     t=copy.deepcopy(offspring)
     name=num_taxa+1

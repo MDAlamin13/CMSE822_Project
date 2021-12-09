@@ -8,11 +8,18 @@ import random
 from ete3 import Tree 
 import copy
 import math
-#random.seed(1)
+import sys
 
-population_size=10
-generation=2
+
+
+
+population_size=int(sys.argv[1])
+generation=int(sys.argv[2])
+seed=int(sys.argv[3])
 shape=500
+
+
+random.seed(seed)
 
 k=math.ceil(population_size*0.2)
 topology_mutation_rate=0.2
@@ -76,7 +83,7 @@ for i in range(population_size):
 for i in range(population_size):  
         tree=population[i][0]
         branch_initialize(tree)
-        mutation.branch_mutation_ete(tree)    
+        mutation.branch_mutation_ete(tree,seed)    
 
 ##### Running generations #########
 
@@ -139,14 +146,14 @@ with open("gen_results_8.txt", "w") as f:
         #### Mutation for each of the offsping     
         for i in range(1,population_size):  
             tree=offspring_array[i][0]
-            mutation.branch_mutation_ete(tree)
+            mutation.branch_mutation_ete(tree,seed)
         
         for i in range(1,population_size):
             toss=random.random()
             tree=Tree()
             if(toss<topology_mutation_rate):
                 tree=offspring_array[i][0]
-                mutation.topology_mutation(tree,num_taxa)
+                mutation.topology_mutation(tree,num_taxa,seed)
         
         for i in range(1,population_size):
             toss=random.random()
@@ -177,7 +184,7 @@ with open("gen_results_8.txt", "w") as f:
                     second_parent=random.randint(0,population_size-1)
 
                 recombined_offspring=Tree()
-                recombined_offspring=crossover.crossover(offspring_array[i][0],ranked_parent_population[second_parent][0],num_taxa)
+                recombined_offspring=crossover.crossover(offspring_array[i][0],ranked_parent_population[second_parent][0],num_taxa,seed)
                 offspring_array[i][0]=recombined_offspring    
 
         population=offspring_array

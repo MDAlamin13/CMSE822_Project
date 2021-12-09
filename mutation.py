@@ -27,8 +27,9 @@ def branch_length_mutation(tree):
                 clade.branch_length=(old_blen*multiplicative_factor)
 
 ## tree in ete3 format ##
-def branch_mutation_ete(tree):
+def branch_mutation_ete(tree,seed):
     #proportion=random.random()
+    random.seed(seed)
     proportion=branch_mut_prob
     for node in tree.traverse():
         if not node.is_root():
@@ -42,7 +43,8 @@ def branch_mutation_ete(tree):
                 #node.dist=random.uniform(1,1000)
 
 ### tree in ete3 format ###
-def topology_mutation(tree,num_taxa):
+def topology_mutation(tree,num_taxa,seed):
+    random.seed(seed)
     #t=Tree("testwrite.nwk")
     t=tree
     name=num_taxa+1
